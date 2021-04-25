@@ -1,12 +1,10 @@
-// Preloader js    
+// Preloader js
 $(window).on('load', function () {
 	$('.preloader').fadeOut(100);
 });
 
 (function ($) {
 	'use strict';
-
-
 	//  Search Form Open
 	$('#searchOpen').on('click', function () {
 		$('.search-wrapper').addClass('open');
