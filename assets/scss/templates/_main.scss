@@ -433,3 +433,20 @@
     color: $primary-color;
   }
 }
+
+.intro-header {
+  background:no-repeat center center;
+  background-color:gray;
+  background-attachment:scroll;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  background-size:cover;
+  -o-background-size:cover;
+  margin-bottom:0
+ }
+ @media only screen and (min-width:768px) {
+  .intro-header {
+    margin-bottom:20px;
+    height: 50vh;
+  }
+ }
