@@ -5,10 +5,23 @@
       background-image: url('{{ .Site.Params.header_image | relURL}}');
   }
 </style>
+<script>
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+      document.getElementById("my-navbar").style.padding = "0px 35px 0px 35px";
+      document.getElementById("my-navbar").style.backgroundColor = "#444444c0";
+    } else {
+      document.getElementById("my-navbar").style.padding = "16px 16px 16px 16px";
+      document.getElementById("my-navbar").style.backgroundColor = "#85858500";
+    }
+  }
+</script>
 <header class="intro-header">
   <div class="container-fluid">
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light" id="my-navbar">
       <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}">
         {{ if .Site.Params.logo }}
         <img class="img-fluid" width="50px" src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}">
