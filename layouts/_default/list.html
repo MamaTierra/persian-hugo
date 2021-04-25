@@ -1,15 +1,9 @@
 {{ define "main" }}
-
-<section class="section-sm">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="text-center display-5">Derniers posts "{{.Title}}"</h2>
-    </div>
-  </div>
-</section>
-
 <section class="section pt-0">
+  <section class="section-sm">
+  </section>
   <div class="container-fluid">
+    <h3 class="text-center display-5">Derniers posts "{{.Title}}"</h3>
     <div class="row">
       {{ $paginator := .Paginate (where .Data.Pages "Section" "post") 7 }}
       {{ range $index,$elements:= $paginator.Pages }}

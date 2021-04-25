@@ -1,8 +1,25 @@
 {{ define "main" }}
 
 <section class="section pt-0">
-  <h2 class="text-center display-5">Derniers posts</h2>
+  {{ if .Site.Params.home_description }}
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 mx-auto">
+          <div class="text-center display-5">
+            <img class="img-fluid" width="150px" src="{{ .Site.Params.logo | absURL }}">
+          </div>
+          <div class="text-center display-5">
+            {{ "" | safeHTML }}
+            {{ .Site.Params.home_description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{end}}
   <div class="container-fluid">
+    <h3 class="text-center display-5">Derniers posts</h3>
     <div class="row">
       {{ $paginator := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) }}
       {{ range $index,$elements:= $paginator.Pages }}
