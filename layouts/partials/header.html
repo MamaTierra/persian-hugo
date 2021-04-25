@@ -45,7 +45,7 @@
         {{ if .Site.Params.search }}
         {{ "<!-- search -->" | safeHTML }}
         <div class="search px-4">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <button id="searchOpen" class="search-btn"><img src="{{ "images/search.png" | relURL }}" height="15" style="cursor: pointer;" alt="Search"></button>
           <div class="search-wrapper">
             <form action="{{ `search`| relLangURL }}" class="h-100">
               <input class="search-box pl-4" id="search-query" name="s" type="search" placeholder="Type and hit enter...">
