@@ -1,25 +1,97 @@
-{{ define "main" }}
-
-<section>
+{{ define "header" }}
+{{ "<!-- navigation -->" | safeHTML }}
+<style type="text/css">
+  header.intro-header {
+      background-image: url('{{ if .Params.image }}{{ .Params.image | relURL }}{{ else }}{{ .Site.Params.header_image | relURL}}{{ end }}');
+      height: 75vh;
+  }
+</style>
+<header class="intro-header">
   <div class="container-fluid">
-    <div class="post">
-      <img src="{{ .Params.Image | absURL }}" class="img-fluid w-100" alt="{{ .Title }}">
-      <div class="post-content">
-        <div class="post-date">
-          <span>{{ .PublishDate.Format "02" }}</span>
-          <span>{{ .PublishDate.Format "Jan" }}</span>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}">
+        {{ if .Site.Params.logo }}
+        <img class="img-fluid" width="150px" src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}">
+        {{ else }}
+        {{.Site.Title}}
+        {{ end }}
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          {{ range .Site.Menus.main }}
+          {{ if .HasChildren }}
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              {{ .Name }} <i class="ti-angle-down ml-1"></i>
+            </a>
+            <div class="dropdown-menu">
+              {{ range .Children }}
+              <a class="dropdown-item" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+              {{ end }}
+            </div>
+          </li>
+          {{ else }}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+
+        {{ if .Site.Params.search }}
+        {{ "<!-- search -->" | safeHTML }}
+        <div class="search px-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="{{ `search`| relLangURL }}" class="h-100">
+              <input class="search-box pl-4" id="search-query" name="s" type="search" placeholder="Type and hit enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
         </div>
-        <h2 class="post-title">{{ .Title }}</h2>
+        {{ end }}
       </div>
+    </nav>
+  </div>
+  <div class="container">
+    <div class="post-heading">
+        <div class="tags">
+          <li class="list-inline-item"><i class="ti-tag"></i></li>
+          {{ range .Params.tags }}
+          <a class="tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" title="{{ . }}">
+              {{ . }}
+          </a>
+          {{ end }}
+        </div>
+        <h1>{{ .Title }}</h1>
+        <h2 class="subheading">{{ .Params.subtitle }}</h2>
+        <span class="meta">
+            {{ .Date.Format "Monday, January 2, 2006" }}
+            {{ if .Site.Params.page_view_conter }}
+                {{ partial "page_view_counter.html" . }}
+            {{ end }}
+            <!-- Don't show "Last Modified on" if update happened on the same day. -->
+            {{ if (and (not .Lastmod.IsZero) (not (eq (dateFormat "2006-01-02" .Lastmod) (dateFormat "2006-01-02" .Date)))) }}
+            <br>Last Modified on {{ dateFormat "Monday, January 2, 2006" .Params.LastMod }}
+            {{ end }}
+        </span>
     </div>
   </div>
-</section>
+</header>
+{{ "<!-- /navigation -->" | safeHTML }}
+{{ end }}
 
+{{ define "main" }}
 <section class="section-sm">
   <div class="container">
     <div class="row">
       <div class="col-lg-9 mx-auto">
-        <h1 class="mb-4">{{ .Title }}</h1>
         <div class="content">{{.Content}}</div>
 
         <div class="text-center mt-5">
