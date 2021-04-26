@@ -102,7 +102,18 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <div class="content">{{.Content}}</div>
-
+        <div class="text-center display-5">
+          {{ if .Params.previous }}
+          <a href="{{ `post/` | relLangURL }}{{ .Params.previous | urlize | lower }}">
+            <img class="img-fluid img-logo" width="150px" src="/images/previous.png" >
+          </a>
+          {{ end }}
+          {{ if .Params.next }}
+          <a href="{{ `post/` | relLangURL }}{{ .Params.next | urlize | lower }}">
+            <img class="img-fluid img-logo" width="150px" src="/images/next.png">
+          </a>
+          {{ end }}
+        </div>
         <div class="text-center mt-5">
           <ul class="list-inline post-meta d-inline-block mr-4">
             <li class="list-inline-item"><i class="ti-tag"></i></li>
