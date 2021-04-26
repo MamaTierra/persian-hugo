@@ -6,10 +6,23 @@
       height: 500px;
   }
 </style>
+<script>
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+      document.getElementById("my-navbar").style.padding = "0px 35px 0px 35px";
+      document.getElementById("my-navbar").style.backgroundColor = "#444444c0";
+    } else {
+      document.getElementById("my-navbar").style.padding = "16px 16px 16px 16px";
+      document.getElementById("my-navbar").style.backgroundColor = "#85858500";
+    }
+  }
+</script>
 <header class="intro-header">
   <div class="container-fluid">
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light" id="my-navbar">
       <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}">
         {{.Site.Title}}
       </a>
@@ -46,7 +59,7 @@
           <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
           <div class="search-wrapper">
             <form action="{{ `search`| relLangURL }}" class="h-100">
-              <input class="search-box pl-4" id="search-query" name="s" type="search" placeholder="Type and hit enter...">
+              <input class="search-box pl-4" id="search-query" name="s" type="search" placeholder="">
             </form>
             <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
           </div>
@@ -99,8 +112,6 @@
             </li>
             {{ end }}
           </ul>
-          <span><i class="ti-user mr-2"></i><a
-              href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize }}/">{{ .Params.author }}</a></span>
         </div>
       </div>
     </div>
