@@ -447,20 +447,19 @@
  @media only screen and (min-width:768px) {
   .intro-header {
     margin-bottom:20px;
-    height: 400px;
   }
  }
 
 .intro-header .post-heading {
-  padding-top: 100px;
-  padding-left: 120px;
+  padding-top: 30vh;
+  padding-left: 10vw;
   color: #fff;
  }
 
 .intro-header .post-heading h1 {
   color: #fff;
-  margin-bottom: 24px;
-  margin-top: 20px;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
 }
 
 .intro-header .post-heading .meta {
@@ -478,7 +477,8 @@
 
 .intro-header .site-heading h1{
   color: #ffffff;
-  font-size: 80px;
+  font-size: 3em;
+  margin-top: 10vh;
 }
 
 .intro-header .site-heading .subheading {
