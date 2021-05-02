@@ -23,6 +23,9 @@
   <div class="container-fluid">
     <!-- navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-light" id="my-navbar">
+      {{ if .Site.Params.small_logo }}
+        <img class="img-fluid small_logo" width="40px" src="{{ .Site.Params.small_logo | absURL }}" alt="{{ .Site.Title }}">
+      {{ end }}
       <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}">
         {{.Site.Title}}
       </a>
